@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zidane Store | كوينات بيس</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08130E; --surface:#10231A; --ink:#F1F6EC; --muted:#A3B8AA; --line:#25463A; --gold:#F5B82E; --goldink:#2B1E00;
+  --bronze:#C9824A; --silver:#C9D3DB; --legend:#8B5CFF;
+  color-scheme:dark; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){--bg:#F1F5EA;--surface:#FFFFFF;--ink:#10231A;--muted:#4D6455;--line:#BFD0BE;color-scheme:light}
+}
+:root[data-theme="light"]{--bg:#F1F5EA;--surface:#FFFFFF;--ink:#10231A;--muted:#4D6455;--line:#BFD0BE;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Cairo",system-ui,sans-serif;line-height:1.7;font-size:17px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,.card:has(input:focus-visible){outline:3px solid var(--gold);outline-offset:3px}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 0;position:relative;z-index:2}
+.logo{font-family:"Reem Kufi",sans-serif;font-weight:700;font-size:26px;display:flex;gap:10px;align-items:center}
+.mini{width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--goldink);display:grid;place-items:center;font-weight:900;font-size:16px;border:3px solid #B8860B}
+.wa{color:var(--ink);text-decoration:none;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:5px 16px}
+.wa:hover{background:var(--ink);color:var(--bg)}
+
+/* hero: stadium floodlights + one big coin */
+.hero{position:relative;overflow:hidden;padding:20px 0 70px;
+  background:
+   conic-gradient(from 200deg at 12% -10%,transparent 0 8%,rgba(245,184,46,.18) 10%,transparent 14%),
+   conic-gradient(from 160deg at 88% -10%,transparent 0 8%,rgba(245,184,46,.14) 10%,transparent 14%),
+   radial-gradient(ellipse at 50% 120%,#1E6B42 0,transparent 60%)}
+:root:not([data-theme="dark"]) .hero{--x:0}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;position:relative;z-index:1}
+h1{font-family:"Reem Kufi",sans-serif;font-size:clamp(44px,8vw,92px);line-height:1.05;margin:0 0 14px;font-weight:700}
+h1 em{font-style:normal;display:block;color:var(--gold);-webkit-text-stroke:0}
+.lead{color:var(--muted);font-size:20px;max-width:28ch;margin:0 0 22px}
+.cta{display:inline-block;background:var(--gold);color:var(--goldink);font-weight:900;font-size:19px;text-decoration:none;padding:12px 28px;border-radius:12px;box-shadow:5px 5px 0 var(--ink)}
+.coinstage{perspective:900px;display:grid;place-items:center;min-height:300px}
+.bigcoin{width:min(280px,70vw);aspect-ratio:1;border-radius:50%;position:relative;
+  background:radial-gradient(circle at 35% 30%,#FFE08A,var(--gold) 45%,#B8860B 100%);
+  border:10px solid #D99A12;box-shadow:inset 0 0 0 6px rgba(255,255,255,.25),0 30px 60px rgba(0,0,0,.45);
+  display:grid;place-items:center;color:var(--goldink);font-family:"Reem Kufi",sans-serif;font-weight:700;font-size:min(150px,36vw);
+  animation:spin 7s linear infinite}
+.bigcoin::after{content:"";position:absolute;inset:18px;border-radius:50%;border:3px dashed rgba(43,30,0,.45)}
+@keyframes spin{0%{transform:rotateY(0)}100%{transform:rotateY(360deg)}}
+@media (prefers-reduced-motion:reduce){.bigcoin{animation:none}}
+
+/* pack cards, styled like player cards */
+section.block{padding:56px 0}
+h2.t{font-family:"Reem Kufi",sans-serif;font-size:clamp(30px,5vw,44px);margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 28px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{--c:var(--bronze);position:relative;cursor:pointer;display:block;border-radius:16px 16px 40px 16px;padding:16px 14px 18px;min-height:230px;
+  background:linear-gradient(160deg,color-mix(in srgb,var(--c) 55%,#000) 0,var(--surface) 70%);
+  border:2px solid var(--c);transition:transform .2s}
+.card input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.card:hover{transform:translateY(-6px) rotate(-1deg)}
+.card:has(input:checked){transform:translateY(-8px);box-shadow:0 0 0 4px var(--gold),0 18px 30px rgba(0,0,0,.4)}
+.card.silver{--c:var(--silver)} .card.gold{--c:var(--gold)}
+.card.legend{--c:var(--legend);background:linear-gradient(160deg,#3a1b8a 0,#0f2a4a 45%,#0d3b2a 100%);border-image:none}
+.tier{font-weight:800;font-size:14px;color:var(--c)}
+.card.legend .tier{background:linear-gradient(90deg,#ff7ad9,#7af0ff,#ffe27a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.n{font-family:"Reem Kufi",sans-serif;font-size:42px;font-weight:700;line-height:1;margin:18px 0 0}
+.u{font-weight:700;color:var(--muted);margin-bottom:22px}
+.pr{font-weight:900;font-size:22px}
+.pr small{font-weight:600;color:var(--muted);font-size:14px;display:block}
+.badge{position:absolute;top:12px;inset-inline-end:12px;background:var(--gold);color:var(--goldink);font-size:12px;font-weight:900;padding:0 8px;border-radius:6px}
+.coinmark{position:abs1olute;bottom:12px;inset-inline-end:14px;width:30px;height:30px;border-radius:50%;background:var(--c);opacity:.9}
+
+/* order bar */
+.order{background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:22px;margin-top:30px;display:grid;grid-template-columns:repeat(4,1fr) auto;gap:14px;align-items:end}
+.f{display:grid;gap:4px}
+.f label{font-weight:700;font-size:14px;color:var(--muted)}
+.f input,.f select{font:inherit;padding:10px 12px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:40px;height:44px;font:inherit;font-size:22px;font-weight:900;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.qty output{min-width:30px;text-align:center;font-weight:900;font-size:20px}
+.go{font:inherit;font-weight:900;font-size:18px;padding:12px 26px;border:0;border-radius:12px;background:var(--gold);color:var(--goldink);cursor:pointer}
+.sum{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;border-top:2px dashed var(--line);padding-top:12px;font-weight:700}
+.sum strong{font-size:30px;font-weight:900;color:var(--gold)}
+.err{grid-column:1/-1;margin:0;min-height:22px;color:#FF9C94;font-weight:700;font-size:14px}
+:root[data-theme="light"] .err{color:#B3261E}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;list-style:none;padding:0;margin:0;counter-reset:s}
+.steps li{counter-increment:s;border-top:5px solid var(--gold);padding-top:12px}
+.steps li::before{content:counter(s);font-family:"Reem Kufi",sans-serif;font-size:36px;color:var(--gold);display:block;line-height:1}
+.steps span{color:var(--muted);font-size:15px;display:block}
+details{border-bottom:1px solid var(--line);padding:12px 0}
+summary{cursor:pointer;font-weight:800}
+details p{margin:8px 0 0;color:var(--muted)}
+footer{border-top:2px solid var(--line);padding:24px 0 34px;color:var(--muted);font-size:15px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}.order{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}.hero .wrap{grid-template-columns:1fr}}
+@media(max-width:430px){.steps{grid-template-columns:1fr}.n{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="wrap"><header style="grid-column:1/-1">
+    <div class="logo"><span class="mini" aria-hidden="true">Z</span>Zidane Store</div>
+    <a class="wa" id="topwa" href="#" target="_blank" rel="noopener">كلمنا واتساب</a>
+  </header></div>
+  <div class="wrap">
+    <div>
+      <h1>املا محفظتك<em>بكوينات بيس</em></h1>
+      <p class="lead">8 باقات من 500 لحد 100 ألف كوين. اختار كارتك وابعت الطلب على واتساب.</p>
+      <a class="cta" href="#packs">اختار الباقة</a>
+    </div>
+    <div class="coinstage" aria-hidden="true"><div class="bigcoin">Z</div></div>
+  </div>
+</div>
+
+<main>
+<section class="block" id="packs"><div class="wrap">
+  <h2 class="t">اختار كارتك</h2>
+  <p class="sub">كل ما الباقة أكبر، سعر الألف كوين بيقل.</p>
+  <div class="cards" id="cards" role="radiogroup" aria-label="الباقات"></div>
+
+  <div class="order">
+    <div class="f"><label for="pid">اسم الحساب أو ID</label><input id="pid" autocomplete="off" placeholder="مثال: Zizou10"></div>
+    <div class="f"><label for="pay">طريقة الدفع</label><select id="pay"><option>فودافون كاش</option><option>إنستاباي</option><option>فوري</option><option>اتصالات كاش</option></select></div>
+    <div class="f"><label>الكمية</label><div class="qty"><button type="button" id="mi" aria-label="أقل">−</button><output id="q">1</output><button type="button" id="pl" aria-label="أكتر">+</button></div></div>
+    <div class="f"><label>الباقة</label><output id="pk" style="font-weight:900;font-size:18px">—</output></div>
+    <button class="go" id="go" type="button">ابعت على واتساب</button>
+    <div class="sum"><span>الإجمالي</span><strong id="tot">—</strong></div>
+    <p class="err" id="err" role="alert"></p>
+  </div>
+</div></section>
+
+<section class="block" style="border-top:2px solid var(--line)"><div class="wrap">
+  <h2 class="t">الطلب بيمشي إزاي</h2><p class="sub"></p>
+  <ol class="steps">
+    <li><b>اختار الكارت</b><span>حدد الباقة والكمية واكتب حسابك.</span></li>
+    <li><b>ابعت الطلب</b><span>واتساب بيفتح برسالة جاهزة.</span></li>
+    <li><b>ادفع</b><span>هنبعتلك رقم الدفع ونتأكد من التحويل.</span></li>
+    <li><b>استلم الكوينات</b><span>بنأكد معاك أول ما توصل.</span></li>
+  </ol>
+</div></section>
+
+<section class="block" style="border-top:2px solid var(--line)"><div class="wrap">
+  <h2 class="t">أسئلة بتتسأل كتير</h2><p class="sub"></p>
+  <details><summary>الكوينات بتوصل في قد إيه؟</summary><p>بعد تأكيد الدفع، بنقولك وقت التسليم على واتساب وقت الطلب.</p></details>
+  <details><summary>محتاج أديكم الباسورد؟</summary><p>لأ. متبعتش الباسورد لأي حد، ولو حد طلبه منك ارفض.</p></details>
+  <details><summary>لو حصلت مشكلة في الطلب؟</summary><p>كلمنا على واتساب وابعت رقم الطلب ونتابع معاك.</p></details>
+</div></section>
+</main>
+
+<div class="wrap"><footer><span>© Zidane Store</span><span>الموقع غير تابع لشركة Konami أو eFootball.</span></footer></div>
+
+<script>
+(function(){
+  // غيّر الرقم برقم واتساب بتاعك (صيغة دولية بدون +)
+  var WA="201000000000";
+  var P=[
+    {c:500,p:14,t:"برونزي",k:""},
+    {c:1000,p:25,t:"برونزي",k:""},
+    {c:2500,p:60,t:"فضي",k:"silver"},
+    {c:5000,p:115,t:"فضي",k:"silver"},
+    {c:10000,p:220,t:"ذهبي",k:"gold",b:"الأكتر طلبًا"},
+    {c:25000,p:530,t:"ذهبي",k:"gold"},
+    {c:50000,p:1050,t:"أسطورة",k:"legend",b:"وفّر أكتر"},
+    {c:100000,p:2000,t:"أسطورة",k:"legend"}
+  ];
+  var f=function(n){return n.toLocaleString("ar-EG")};
+  var box=document.getElementById("cards");
+  P.forEach(function(x,i){
+    var l=document.createElement("label");l.className="card "+x.k;
+    l.innerHTML=(x.b?'<span class="badge">'+x.b+'</span>':'')+
+     '<input type="radio" name="pk" value="'+i+'"'+(i===4?' checked':'')+'>'+
+     '<span class="tier">'+x.t+'</span><div class="n">'+f(x.c)+'</div><div class="u">كوين</div>'+
+     '<div class="pr">'+f(x.p)+' جنيه<small>'+f(Math.round(x.p/x.c*1000*10)/10)+' جنيه لكل ألف</small></div><span class="coinmark" aria-hidden="true"></span>';
+    box.appendChild(l);
+  });
+  var qty=1,$=function(i){return document.getElementById(i)};
+  function cur(){return P[+document.querySelector('input[name="pk"]:checked').value]}
+  function upd(){var x=cur();$("q").textContent=f(qty);$("pk").textContent=f(x.c*qty)+" كوين";$("tot").textContent=f(x.p*qty)+" جنيه"}
+  box.addEventListener("change",upd);
+  $("mi").onclick=function(){if(qty>1){qty--;upd()}};
+  $("pl").onclick=function(){if(qty<20){qty++;upd()}};
+  upd();
+  $("topwa").href="https://wa.me/"+WA;
+  $("go").onclick=function(){
+    var id=$("pid").value.trim();
+    if(!id){$("err").textContent="اكتب اسم حسابك أو ID اللاعب الأول.";$("pid").focus();return}
+    $("err").textContent="";
+    var x=cur();
+    var m="طلب جديد من Zidane Store\nالباقة: "+f(x.c)+" كوين × "+f(qty)+"\nإجمالي الكوينات: "+f(x.c*qty)+"\nالسعر: "+f(x.p*qty)+" جنيه\nالحساب: "+id+"\nالدفع: "+$("pay").value;
+    window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(m),"_blank","noopener");
+  };
+})();
+</script>
+</body>
+</html>
